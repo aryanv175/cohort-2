@@ -86,7 +86,15 @@ app.post('/health-checkup', (req, res) => {
     // now we validate the kidneys input with zod
     const response = schema.safeParse(kidneys);
 
-    res.send({response});
+    if (!response.success) {
+        res.status(411).json({
+            message: "input  is invalid"
+        })
+    } else {
+        res.send({
+            response
+        })
+    }
 
 })
 

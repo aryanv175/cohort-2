@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+// without middlewares
+/*
 app.get('/health-checkup', (req, res) => {
     const kidneyId = req.query.kidneyId;
     const username = req.headers.username;
@@ -21,6 +23,7 @@ app.get('/health-checkup', (req, res) => {
 
     res.json("hey there");
 })
+*/
 
 app.listen(port, ()=> {
     console.log(`listening on port ${port}`);

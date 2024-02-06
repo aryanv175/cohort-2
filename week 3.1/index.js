@@ -27,6 +27,10 @@ app.get('/health-checkup', (req, res) => {
 
 // using middlewares
 
+// app.use means that this middleware will be used for
+// all the routes written below this point.
+app.use(express.json());
+
 function userAuth (req, res, next){
     const username = req.headers.username;
     const pass = req.headers.pass;

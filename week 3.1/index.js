@@ -27,6 +27,7 @@ app.get('/health-checkup', (req, res) => {
 
 // using middlewares
 
+/*
 // app.use means that this middleware will be used for
 // all the routes written below this point.
 app.use(express.json());
@@ -67,6 +68,26 @@ app.use((err, req, res, next)=>{
     res.json({
         message: "Something went wrong, pls try again later."
     })
+})
+
+*/
+
+// introduction to Zod
+const z = require("zod");
+
+app.use(express.json())
+
+// this will make sure that the input is an array
+// of numbers
+const schema = z.array(z.number());
+
+app.post('/health-checkup', (req, res) => {
+    const kidneys = req.body.kidneys;
+    // now we validate the kidneys input with zod
+    const response = schema.safeParse(kidneys);
+
+    res.send({response});
+
 })
 
 //app.listen 

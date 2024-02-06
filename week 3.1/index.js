@@ -62,6 +62,13 @@ app.get('/healthCheckup', userAuth, kidneyAuth, (req, res) => {
     });
 })
 
+// global catches
+app.use((err, req, res, next)=>{
+    res.json({
+        message: "Something went wrong, pls try again later."
+    })
+})
+
 app.listen(port, ()=> {
     console.log(`listening on port ${port}`);
 })

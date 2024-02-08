@@ -171,6 +171,7 @@ const express = require("express");
 const app = express();
 const mongoose = require ("mongoose");
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 // used to verify and generate the jwt token
 const jwtPassword = "123";  
 
@@ -205,11 +206,14 @@ app.post('/signup', async (req, res)=> {
         })
     }
 
+    // hashing the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     // else
     const user = new User ({
         username: username,
         email: email,
-        password: password
+        password: hashedPassword
     })
 
     user.save().then(()=>console.log("User is saved!"))
@@ -222,14 +226,23 @@ app.post('/signup', async (req, res)=> {
 
 
 
-app.post('/signin', (req, res) => {
-    const username = req.body.username;
+app.post('/signin', async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    if (!existingUser(email)){
+    const user = await existingUser(email)
+
+    if (!user){
         return res.sendStatus(411).json({
-            message: "you are not a user"
+            message: "Please sign in first!"
+        })
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+        return res.sendStatus(401).json({
+            message: "Invalid Credentials!"
         })
     }
 

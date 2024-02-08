@@ -67,6 +67,7 @@ app.listen(3000)
 
 */
 
+/*
 // start using databases
 
 const express = require("express");
@@ -107,7 +108,7 @@ app.post("/signup", async (req, res) => {
 });
 
 app.listen(3000, () => console.log("Server started on port 3000"));
-
+*/
 
 /*
 const express = require("express");
@@ -164,3 +165,82 @@ app.get("/users", function (req, res) {
 
 app.listen(3000);
 */
+
+
+const express = require("express");
+const app = express();
+const mongoose = require ("mongoose");
+const jwt = require('jsonwebtoken');
+// used to verify and generate the jwt token
+const jwtPassword = "123";  
+
+//connect to the database:
+mongoose.connect("mongodb+srv://aryanverma:S8J0LAsOZ9hPsXZ0@cluster0.eitqolz.mongodb.net/temp")
+
+// now we make the schema for the mongodb table
+const User = mongoose.model("User", {
+    username: String,
+    email: String,
+    password: String
+});
+
+// middleware to parse the body to JSON
+app.use(express.json());
+
+// function for existing user
+async function existingUser (email){
+    let bool = await User.findOne({ email : email});
+    return bool
+}
+
+// making the signup route
+app.post('signup', (req, res)=> {
+    const username = req.body.username;
+    const password = req.body.password;
+    const email = req.body.email;
+ 
+    if (existingUser(email)) {
+        return res.sendStatus(411).json({
+            message: "User already exists try signing in!"
+        })
+    }
+
+    // else
+    const user = new User ({
+        username: username,
+        email: email,
+        password: password
+    })
+
+    user.save().then(()=>console.log("User is saved!"))
+
+    res.json({
+        message: "user saved successfully!"
+    })
+
+});
+
+
+
+app.post('/signin', (req, res) => {
+    const username = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
+
+    if (!existingUser(email)){
+        return res.sendStatus(411).json({
+            message: "you are not a user"
+        })
+    }
+
+    // generate a token for the user
+    var token = jwt.sign({email: email}, jwtPassword)
+
+    // send the token to the user
+    return res.sendStatus(200).json({
+        token,
+        message: "Please use this token to sign in the next time."
+    })
+})
+
+app.listen(3000, ()=>console.log("running on port 3000"))

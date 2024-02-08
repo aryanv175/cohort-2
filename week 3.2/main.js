@@ -194,12 +194,12 @@ async function existingUser (email){
 }
 
 // making the signup route
-app.post('/signup', (req, res)=> {
+app.post('/signup', async (req, res)=> {
     const username = req.body.username;
     const password = req.body.password;
     const email = req.body.email;
  
-    if (existingUser(email)) {
+    if ( await existingUser(email)) {
         return res.sendStatus(411).json({
             message: "User already exists try signing in!"
         })

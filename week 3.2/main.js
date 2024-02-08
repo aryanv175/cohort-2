@@ -194,7 +194,7 @@ async function existingUser (email){
 }
 
 // making the signup route
-app.post('signup', (req, res)=> {
+app.post('/signup', (req, res)=> {
     const username = req.body.username;
     const password = req.body.password;
     const email = req.body.email;

@@ -68,13 +68,56 @@ app.listen(3000)
 */
 
 // start using databases
+
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+app.use(express.json());
+
+mongoose.connect(
+  "mongodb+srv://aryanverma:S8J0LAsOZ9hPsXZ0@cluster0.eitqolz.mongodb.net/usersnew",
+);
+
+const User = mongoose.model("Users", {
+  name: String,
+  email: String,
+  password: String,
+});
+
+app.post("/signup", async (req, res) => {
+  const username = req.body.username;
+  const email = req.body.email;
+  const password = req.body.password;
+
+  const existingUser = await User.findOne({ email: email });
+  if (existingUser) {
+    res.sendStatust(411).json({ message: "User already exists" });
+  }
+
+  const user = new User({
+    name: username,
+    email: email,
+    password: password,
+  });
+
+  user.save().then(() => console.log("User saved!"));
+  res.json({
+    message: "User created successfully",
+  });
+});
+
+app.listen(3000, () => console.log("Server started on port 3000"));
+
+
+/*
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const jwtPassword = "123456";
+app.use(express.json())
 
 mongoose.connect(
-  "your_mongo_url",
+  "mongodb+srv://aryanverma:S8J0LAsOZ9hPsXZ0@cluster0.eitqolz.mongodb.net/usersnew",
 );
 
 const User = mongoose.model("User", {
@@ -120,3 +163,4 @@ app.get("/users", function (req, res) {
 });
 
 app.listen(3000);
+*/

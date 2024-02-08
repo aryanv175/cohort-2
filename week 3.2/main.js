@@ -250,28 +250,26 @@ app.post('/signin', async (req, res) => {
     var token = jwt.sign({email: email}, jwtPassword)
 
     // send the token to the user
-    return res.sendStatus(200).json({
+    return res.json({
         token,
         message: "Please use this token to sign in the next time."
     })
 })
 
 // only authenticated users will be able to see this particular endpoint
-app.get('/users', (req, res)=>{
-    const token = req.headers.authorization
+app.get('/users', (req, res) => {
+    const token = req.headers.authorization;
     try {
         const decoded = jwt.verify(token, jwtPassword);
-        const decodedEmail = decoded.email; 
-        return res.sendStatus(200).json({
-            // need to access all the users from the mongodb database.
+        const decodedEmail = decoded.email;
+        res.status(200).json({
             message: decodedEmail
-        })
+        });
     } catch {
-        return res.sendStatus(403).json({
+        res.status(403).json({
             message: "Invalid token, Try again."
-        })
-
+        });
     }
-})
+});
 
 app.listen(3000, ()=>console.log("running on port 3000"))

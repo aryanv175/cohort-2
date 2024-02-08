@@ -243,4 +243,22 @@ app.post('/signin', (req, res) => {
     })
 })
 
+// only authenticated users will be able to see this particular endpoint
+app.get('/users', (req, res)=>{
+    const token = req.headers.authorization
+    try {
+        const decoded = jwt.verify(token, jwtPassword);
+        const decodedEmail = decoded.email; 
+        return res.sendStatus(200).json({
+            // need to access all the users from the mongodb database.
+            message: decodedEmail
+        })
+    } catch {
+        return res.sendStatus(403).json({
+            message: "Invalid token, Try again."
+        })
+
+    }
+})
+
 app.listen(3000, ()=>console.log("running on port 3000"))

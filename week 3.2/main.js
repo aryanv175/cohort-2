@@ -201,7 +201,7 @@ app.post('/signup', async (req, res)=> {
     const email = req.body.email;
  
     if ( await existingUser(email)) {
-        return res.sendStatus(411).json({
+        res.status(411).json({
             message: "User already exists try signing in!"
         })
     }
@@ -233,7 +233,7 @@ app.post('/signin', async (req, res) => {
     const user = await existingUser(email)
 
     if (!user){
-        res.sendStatus(411).json({
+        return res.sendStatus(411).json({
             message: "Please sign in first!"
         })
     }
@@ -241,7 +241,7 @@ app.post('/signin', async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
-        res.sendStatus(401).json({
+        return res.status(401).json({
             message: "Invalid Credentials!"
         })
     }
@@ -250,7 +250,7 @@ app.post('/signin', async (req, res) => {
     var token = jwt.sign({email: email}, jwtPassword)
 
     // send the token to the user
-    return res.json({
+    res.json({
         token,
         message: "Please use this token to sign in the next time."
     })

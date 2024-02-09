@@ -233,7 +233,7 @@ app.post('/signin', async (req, res) => {
     const user = await existingUser(email)
 
     if (!user){
-        return res.sendStatus(411).json({
+        res.sendStatus(411).json({
             message: "Please sign in first!"
         })
     }
@@ -241,7 +241,7 @@ app.post('/signin', async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
-        return res.sendStatus(401).json({
+        res.sendStatus(401).json({
             message: "Invalid Credentials!"
         })
     }

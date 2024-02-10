@@ -15,11 +15,21 @@
             console.log(finalData);
             toFill.innerHTML = finalData;
         }
+
+        let timeout;
+        function depopulatedFillDiv (){
+            clearTimeout(timeout);
+
+            setTimeout(function (){
+                fillDiv()
+            }, 1000)
+        }
+
     </script>
     <body>
-        <input id="num1" type="text" placeholder="enter first number"/><br>
-        <input id="num2" type="text" placeholder="enter second number"/><br>
-        <button class="btn" onclick="fillDiv()">The sum is</button><br>
+        <input oninput="depopulatedFillDiv()" id="num1" type="text" placeholder="enter first number"/><br>
+        <input oninput="depopulatedFillDiv()" id="num2" type="text" placeholder="enter second number"/><br>
+        <!-- removing button for throttling/debouncing<button class="btn" onclick="fillDiv()">The sum is</button><br>-->
         <div id="finalSum"></div>
     </body>
 </html>

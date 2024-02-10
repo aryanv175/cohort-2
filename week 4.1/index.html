@@ -3,9 +3,18 @@
     <head>
 
     </head>
+    <script>
+        function fillDiv () {
+            let num1 = document.getElementById("num1").value;
+            let num2 = document.getElementById("num2").value;
+            let toFill = document.getElementById("finalSum");
+            toFill.innerHTML = parseInt(num1)+ parseInt(num2);
+        }
+    </script>
     <body>
-        <input type="text" placeholder="enter first number"/><br>
-        <input type="text" placeholder="enter second number"/><br>
-        <button>The sum is</button>
+        <input id="num1" type="text" placeholder="enter first number"/><br>
+        <input id="num2" type="text" placeholder="enter second number"/><br>
+        <button class="btn" onclick="fillDiv()">The sum is</button><br>
+        <div id="finalSum"></div>
     </body>
 </html>

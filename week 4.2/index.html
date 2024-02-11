@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html>
+
+    <body>
+        <input id="title" type="text" placeholder="type todo"><br>
+        <input id="description" type="text" placeholder="add description"><br>
+        <div id="container"></div>
+    </body>
+
     <script>
         let globalId = 0;
 
@@ -33,11 +40,30 @@
             container.appendChild(createEachdiv(title, description, globalId));
             globalId += 1;
         }
+
+
+        // use react 
+        function updateDomAccToState (state) {
+            let container = document.getElementById("container");
+            container.innerHTML = "";
+            for (let  i = 0; i< state.length; i ++) {
+                container.appendChild(createEachdiv(state[i].title, state[i].description, i))
+            }
+        }
+
+        window.setInterval(async function () {
+            let res = await fetch("https://sum-server.100xdevs.com/todos");
+            let final_res = await res.json();
+            updateDomAccToState(final_res.todos);
+        }, 5000)
+
+        updateDomAccToState([{
+            title: "abs",
+            description: "dhfghbf"
+        }, {
+            title: "shdfhsdf",
+            description: "wewewewew"
+        }])
     </script>
-    <body>
-        <input id="title" type="text" placeholder="type todo"><br>
-        <input id="description" type="text" placeholder="add description"><br>
-        <button onclick="addToDo()">Add todo</button><br>
-        <div id="container"></div>
-    </body>
+
 </html>

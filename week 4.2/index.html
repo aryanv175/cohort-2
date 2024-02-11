@@ -1,11 +1,43 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <script>
+        let globalId = 0;
 
-    </head>
+        function markAsDone (id){
+            let eachDiv = document.getElementById(id);
+            let btn = eachDiv.children[2];
+            btn.innerHTML = 'Done!';
+        }
+
+        function createEachdiv (title, description, id){
+            let eachDiv = document.createElement("div");
+            let titleDiv = document.createElement("div");
+            titleDiv.innerHTML = title;
+            let descriptionDiv = document.createElement("div");
+            descriptionDiv.innerHTML = description;
+            let toDoButton = document.createElement("button");
+            toDoButton.innerHTML = 'Mark as done';
+            toDoButton.setAttribute("onclick", `markAsDone(${id})`)
+            eachDiv.appendChild(titleDiv);
+            eachDiv.appendChild(descriptionDiv);
+            eachDiv.appendChild(toDoButton);
+            eachDiv.setAttribute("id", id);
+            return eachDiv
+        }
+
+        function addToDo () {
+            let title = document.getElementById("title").value;
+            let description = document.getElementById("description").value;
+            let container = document.getElementById("container");
+            
+            container.appendChild(createEachdiv(title, description, globalId));
+            globalId += 1;
+        }
+    </script>
     <body>
-        <input type="text" placeholder="type todo">
-        <input type="text" placeholder="add description">
-        <button>Add todo</button>
+        <input id="title" type="text" placeholder="type todo"><br>
+        <input id="description" type="text" placeholder="add description"><br>
+        <button onclick="addToDo()">Add todo</button><br>
+        <div id="container"></div>
     </body>
 </html>

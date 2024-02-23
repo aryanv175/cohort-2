@@ -8,7 +8,6 @@ app.post('/todo', (req, res)=>{
     console.log("hey there")
 })
 
-
 app.get('/todos', (req, res)=>{
     console.log("hey there")
 })

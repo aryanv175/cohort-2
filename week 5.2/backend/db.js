@@ -10,14 +10,14 @@ something like this.
 }
 */
 
-const todoSchema = mongoose.Schema({
+const TodoSchema = mongoose.Schema({
     title: String,
     description: String,
     completed: Boolean
 });
 
-const todo = mongoose.model('todos', todoSchema);
+const Todo = mongoose.model('Todos', TodoSchema);
 
 module.exports = {
-    todo
+    Todo
 }

@@ -21,7 +21,7 @@ completed.
 
 const createTodo = z.object({
     title: z.string(),
-    desccription: z.string()
+    description: z.string()
 });
 
 const updateTodo = z.object({

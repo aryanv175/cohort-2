@@ -1,16 +1,35 @@
+import React from "react"
+import { useState } from "react"
+
 function App() {
   
   return (
-    <div>
-      <Header title="title1"></Header>
+    <>
+      <HeaderWithButton></HeaderWithButton>
       <Header title="title2"></Header>
-    </div>
+    </>
   )
+}
+
+function HeaderWithButton (){
+  const [title, setTitle] = useState("title1")
+
+  function updateTitle (){
+    setTitle(Math.random());
+  }
+
+  return (
+    <>
+      <button onClick={updateTitle}>Click me to change the title</button>
+      <Header title={title}></Header>
+    </>
+  )
+
 }
 
 function Header({title}){
   return <div>
-    {title}
+    My name is {title}
   </div>
 }
 

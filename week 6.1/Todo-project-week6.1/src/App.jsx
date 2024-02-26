@@ -41,8 +41,8 @@ function Todo ({title, description}) {
 }
 */
 
-
 // wrapper components
+/*
 function App() {
   return <div>
     <CardWrapper>
@@ -63,6 +63,10 @@ function CardWrapper({children}) {
     {children}
   </div>
 }
+
+*/
+
+// useEffect and Hooks
 
 
 export default App

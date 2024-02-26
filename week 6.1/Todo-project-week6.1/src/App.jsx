@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import './App.css'
 
+// Re-rendering and keys
+/*
 let counter = 4;
-
 function App() {
   const [todos, setTodo] = useState([{
     id: 1,
@@ -38,5 +39,30 @@ function Todo ({title, description}) {
     <h2>{description}</h2>
   </div>)
 }
+*/
+
+
+// wrapper components
+function App() {
+  return <div>
+    <CardWrapper>
+      Hey there
+    </CardWrapper>
+    <CardWrapper>
+      {Math.random()}
+    </CardWrapper>
+  </div>
+}
+
+
+// card wrapper needs to accept some other react component
+// as an input and render that react component with some
+// extra styles
+function CardWrapper({children}) {
+  return <div style={ {border: "2px solid black", margin: "10px"}}>
+    {children}
+  </div>
+}
+
 
 export default App

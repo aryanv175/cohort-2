@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 // Re-rendering and keys
@@ -67,6 +67,35 @@ function CardWrapper({children}) {
 */
 
 // useEffect and Hooks
+
+function App () {
+
+  const [todos, setTodo] = useState([]);
+
+  useEffect(()=> {
+    fetch("https://sum-server.100xdevs.com/todos")
+      .then(async function (res){
+        const json = await res.json();
+        setTodo(json.todos)
+      })
+  }, [])
+
+  return <div>
+    <Todo todos={todos}></Todo>
+  </div>
+
+}
+
+function Todo ({todos}) {
+  return <div>
+    {todos.map(function(todo){
+      return <div key={todo.id}>
+        <h1>{todo.title}</h1>
+        <h2>{todo.description}</h2>
+      </div>
+    })}
+  </div>
+}
 
 
 export default App

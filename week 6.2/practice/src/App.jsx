@@ -29,6 +29,8 @@ function Todo ({title, description}){
 }
 */
 
+// use of useEffect
+/*
 function App (){
 
   const [id, setId] = useState(1)
@@ -67,6 +69,36 @@ function Todo ({id}) {
     {todo.description}
     </h2>
   </div> 
+}
+*/
+
+// useMemo hopefully over here
+
+function App () {
+  const [count, setCount] = useState(0);
+  const [numSum, setSum] = useState(0);
+
+  function addCount () {
+    setCount(count + 1);
+  }
+
+  function calculateSum (num){
+    let res =0;
+    for (let i = 0; i < num; i++) {
+      res += i;
+    }
+    setSum(res);
+  }
+
+  return<div>
+    <input
+        type="number"
+        onChange={(e) => calculateSum(e.target.value)}
+        placeholder="Enter number here for sum"
+      />
+    <h5>the sum is {numSum}</h5>
+    <button onClick={addCount}>Count is {count}</button>
+  </div>
 }
 
 export default App

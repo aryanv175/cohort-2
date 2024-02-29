@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import axios from "axios"
 import './App.css'
 
@@ -76,29 +76,31 @@ function Todo ({id}) {
 
 function App () {
   const [count, setCount] = useState(0);
-  const [numSum, setSum] = useState(0);
+  const [inputValue, setSum] = useState(0);
+
+  let num = useMemo(()=>{
+    let num =0;
+    for (let i = 0; i < inputValue; i++) {
+      num += i;
+    }
+    return num;
+  }, [inputValue])
 
   function addCount () {
     setCount(count + 1);
   }
 
-  function calculateSum (num){
-    let res =0;
-    for (let i = 0; i < num; i++) {
-      res += i;
-    }
-    setSum(res);
-  }
 
   return<div>
     <input
         type="number"
-        onChange={(e) => calculateSum(e.target.value)}
+        onChange={(e) => setSum(e.target.value)}
         placeholder="Enter number here for sum"
       />
-    <h5>the sum is {numSum}</h5>
+    <h5>the sum is {num}</h5>
     <button onClick={addCount}>Count is {count}</button>
   </div>
 }
 
+// try
 export default App

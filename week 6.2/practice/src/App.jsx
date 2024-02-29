@@ -73,7 +73,7 @@ function Todo ({id}) {
 */
 
 // useMemo hopefully over here
-
+/*
 function App () {
   const [count, setCount] = useState(0);
   const [inputValue, setSum] = useState(0);
@@ -101,6 +101,20 @@ function App () {
     <button onClick={addCount}>Count is {count}</button>
   </div>
 }
+*/
 
-// try
+
+// useCallback
+function App (){
+  const [count, setCount] = useState(0);
+
+  function addCount (){
+    setCount(count+1)
+  }
+
+  return <div>
+    <button onClick={addCount}>The count is {count}</button>
+  </div>
+}
+
 export default App

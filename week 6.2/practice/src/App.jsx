@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, memo } from 'react'
 import axios from "axios"
 import './App.css'
 
@@ -104,17 +104,27 @@ function App () {
 */
 
 
-// useCallback
-function App (){
-  const [count, setCount] = useState(0);
+function App() {
+  const [count, setCount] = useState(0)
 
-  function addCount (){
-    setCount(count+1)
+  function logSomething() {
+    console.log("child clicked")
   }
 
   return <div>
-    <button onClick={addCount}>The count is {count}</button>
+    <Child onClick={logSomething} />
+    <button onClick={() => {
+      setCount(count + 1);
+    }}>Click me {count}</button>
   </div>
 }
+
+const Child = memo(({onClick}) => {
+  console.log("child render")
+
+  return <div>
+    <button onClick={onClick}>Button clicked</button>
+  </div>
+})
 
 export default App

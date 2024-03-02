@@ -112,18 +112,18 @@ function App() {
   }
 
   return <div>
-    <Child onClick={logSomething} />
+    <Child inputFunction={logSomething} />
     <button onClick={() => {
       setCount(count + 1);
     }}>Click me {count}</button>
   </div>
 }
 
-const Child = memo(({onClick}) => {
+const Child = memo(({inputFunction}) => {
   console.log("child render")
 
   return <div>
-    <button onClick={onClick}>Button clicked</button>
+    <button onClick={inputFunction}>Button clicked</button>
   </div>
 })
 

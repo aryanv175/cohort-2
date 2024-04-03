@@ -7,17 +7,14 @@ import './App.css'
 function App() {
 
   return (
-    <div>
-      
-      <BrowserRouter>
-        <Header>
-        </Header>
-          <Routes>
-            <Route path="/dashboard" element={<Dashboard/>}/>
-            <Route path="/" element={<Home/>}/>
-          </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Header>
+      </Header>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/" element={<Home/>}/>
+        </Routes>
+    </BrowserRouter>
   )
 }
 

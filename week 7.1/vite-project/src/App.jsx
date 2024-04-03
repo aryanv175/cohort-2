@@ -8,12 +8,30 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/dashboard" element={<Dashboard/>}/>
-        <Route path="/" element={<Home/>}/>
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <Header>
+      </Header>
+      <BrowserRouter>
+          <Routes>
+            <Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/" element={<Home/>}/>
+          </Routes>
+      </BrowserRouter>
+    </div>
+  )
+}
+
+function Header () {
+  return (  
+  <div>
+    <button onClick={() => {
+      window.location.href = '/'
+    }}>Home Page
+    </button>
+    <button onClick={() => {
+      window.location.href = '/dashboard'
+    }}>Dashboard Page</button>
+  </div>
   )
 }
 

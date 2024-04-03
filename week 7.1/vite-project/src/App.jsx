@@ -8,9 +8,10 @@ function App() {
 
   return (
     <div>
-      <Header>
-      </Header>
+      
       <BrowserRouter>
+        <Header>
+        </Header>
           <Routes>
             <Route path="/dashboard" element={<Dashboard/>}/>
             <Route path="/" element={<Home/>}/>

@@ -5,17 +5,23 @@ function App() {
 
   return (
     <div>
-      <Count count={count}/>
-      <Buttons count={count} setCount={setCount}/>
+      <Count count={count} setCount={setCount}/>
     </div>
   )
 }
 
-function Count({count}) {
+function Count({count, setCount}) {
+  return <div>
+    <CountRenderer count={count}/>
+    <Buttons count={count} setCount={setCount}/>
+  </div>
+
+}
+
+function CountRenderer({count}) {
   return <div>
     {count}
   </div>
-
 }
 
 function Buttons({count, setCount}) {

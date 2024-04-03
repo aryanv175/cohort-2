@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import { Dashboard } from './pages/Dashboard'
 import { Home } from './pages/Home'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div>
@@ -22,14 +21,17 @@ function App() {
 }
 
 function Header () {
+
+  const navigate = useNavigate();
+
   return (  
   <div>
     <button onClick={() => {
-      window.location.href = '/'
+      navigate('/')
     }}>Home Page
     </button>
     <button onClick={() => {
-      window.location.href = '/dashboard'
+      navigate('/dashboard')
     }}>Dashboard Page</button>
   </div>
   )

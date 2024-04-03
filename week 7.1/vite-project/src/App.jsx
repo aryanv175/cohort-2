@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
-import { Dashboard } from './pages/Dashboard'
-import { Home } from './pages/Home'
 import './App.css'
+const Dashboard = React.lazy(() => import('./pages/Dashboard'))
+const Home = React.lazy(() => import('./pages/Home'))
 
 function App() {
 
@@ -16,6 +16,7 @@ function App() {
         </Routes>
     </BrowserRouter>
   )
+
 }
 
 function Header () {

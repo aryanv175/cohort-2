@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react'
+import React, { Suspense } from 'react'
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import './App.css'
 const Dashboard = React.lazy(() => import('./pages/Dashboard'))

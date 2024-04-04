@@ -11,7 +11,9 @@ export const countAtom = atom({
 export const evenSelector = selector({
     key: "evenSelector",
     get: ({get}) => {
+        // this is like the dependency in useMemo, so we are telling our
+        // selector to only run this code when the countAtom changes.
         const count = get(countAtom);
         return count %2 ==0;
     }
-})
+});

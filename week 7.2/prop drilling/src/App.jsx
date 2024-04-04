@@ -15,6 +15,7 @@ function App() {
 }
 
 function Count() {
+  console.log('count- rerendered')
   return <div>
     <CountRenderer/>
     <Buttons />

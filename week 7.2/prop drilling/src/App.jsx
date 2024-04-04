@@ -1,5 +1,5 @@
 import { useState, useContext } from "react"
-import { countAtom } from "./store/atoms/count";
+import { countAtom, evenSelector } from "./store/atoms/count";
 import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
 
 
@@ -44,8 +44,8 @@ function Buttons() {
 }
 
 function EvenRender () {
-  const count = useRecoilValue(countAtom);
-  if (count % 2 == 0){
+  const isEven = useRecoilValue(evenSelector);
+  if (isEven){
     console.log("re render?")
     return <div> number is even</div>
   }

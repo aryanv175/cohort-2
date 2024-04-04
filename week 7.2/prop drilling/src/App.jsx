@@ -1,5 +1,5 @@
 import { useState, useContext } from "react"
-import { CountContext } from "./context";
+import { CountContext } from "./context"
 
 
 function App() {

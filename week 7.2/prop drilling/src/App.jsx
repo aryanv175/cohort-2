@@ -1,13 +1,15 @@
 import { useState, useContext } from "react"
 import { countAtom } from "./store/atoms/count";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
 
 
 function App() {
 
   return (
     <div>
-        <Count/>
+        <RecoilRoot>
+          <Count/>
+        </RecoilRoot>
     </div>
   )
 }
@@ -25,6 +27,7 @@ function CountRenderer() {
   const count = useRecoilValue(countAtom);
   return <div>
     {count}
+    <EvenRender/>
   </div>
 }
 
@@ -38,6 +41,14 @@ function Buttons() {
       setCount(count - 1)
     }}>-</button>
   </div>
+}
+
+function EvenRender () {
+  const count = useRecoilValue(countAtom);
+  if (count % 2 == 0){
+    console.log("re render?")
+    return <div> number is even</div>
+  }
 }
 
 export default App

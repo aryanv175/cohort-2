@@ -1,4 +1,4 @@
-import { atom } from 'recoil'
+import { atom, selector } from 'recoil'
 
 export const countAtom = atom({
     // a default way to uniquely identify this atom.
@@ -7,3 +7,11 @@ export const countAtom = atom({
     // default value
     default: 0
 });
+
+export const evenSelector = selector({
+    name: "evenSelector",
+    get: ({get}) => {
+        const count = get(countAtom);
+        return count %2 ==0;
+    }
+})

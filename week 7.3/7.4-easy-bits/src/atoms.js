@@ -2,22 +2,22 @@ import { atom, selector } from "recoil";
 
 export const networkAtom = atom({
     key: "networkAtom",
-    defaul: 102
+    default: 102
 });
 
 export const jobsAtom = atom({
     key: "jobsAtom",
-    defaul: 0
+    default: 0
 });
 
 export const messagingAtom = atom({
     key: "networkAtom",
-    defaul: 0
+    default: 0
 });
 
 export const notificationsAtom = atom({
     key: "networkAtom",
-    defaul: 12
+    default: 12
 });
 
 export const totalNotificationSelector = selector({

@@ -26,7 +26,7 @@ function MainApp() {
     <>
       <button>Home</button>
       
-      <button>My network ({networkNotificationCount >= 100 ? "99+" : networkNotificationCount})</button>
+      <button>My network ({networkNotificationCount >= 99 ? "99+" : networkNotificationCount})</button>
       <button>Jobs {jobsAtomCount}</button>
       <button>Messaging ({messagingAtomCount})</button>
       <button>Notifications ({notificationsAtomCount})</button>

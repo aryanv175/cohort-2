@@ -11,22 +11,22 @@ export const jobsAtom = atom({
 });
 
 export const messagingAtom = atom({
-    key: "networkAtom",
+    key: "messagingAtom",
     default: 0
 });
 
 export const notificationsAtom = atom({
-    key: "networkAtom",
-    default: 102
+    key: "notificationsAtom",
+    default: 12
 });
 
 export const totalNotificationSelector = selector({
     key: "totalNotificationSelector",
-    value: ({get}) => {
+    get: ({get}) => {
         const networkAtom = get(networkAtom);
         const jobsAtom = get(jobsAtom);
         const messagingAtom = get(messagingAtom);
         const totalNotificationSelector = get(totalNotificationSelector);
-        return networkAtomCount = networkAtom + jobsAtom + messagingAtom + totalNotificationSelector
+        return networkAtom + jobsAtom + messagingAtom + totalNotificationSelector
     }
 })

@@ -17,7 +17,7 @@ export const messagingAtom = atom({
 
 export const notificationsAtom = atom({
     key: "networkAtom",
-    default: 12
+    default: 102
 });
 
 export const totalNotificationSelector = selector({

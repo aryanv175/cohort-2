@@ -19,6 +19,13 @@ function App() {
         <div className='bg-green-500 col-span-2'>whats</div>
         <div className='bg-blue-500'>up</div>
       </div>
+      <br></br>
+      <div className='md:grid grid-cols-3'>
+        <div className='bg-red-500'>hey</div>
+        <div className='bg-green-500'>whats</div>
+        <div className='bg-blue-500'>up</div>
+      </div>
+
     </div>
   )
 }

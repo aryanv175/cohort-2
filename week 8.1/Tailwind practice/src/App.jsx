@@ -7,10 +7,18 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
-      <div style={{backgroundColor: 'red'}}>hey</div>
-      <div style={{backgroundColor: 'green'}}>whats</div>
-      <div style={{backgroundColor: 'blue'}}>up</div>
+    <div>
+      <div className='flex'>
+        <div className='bg-red-500'>hey</div>
+        <div className='bg-green-500'>whats</div>
+        <div className='bg-blue-500'>up</div>
+      </div>
+      <br></br>
+      <div className='grid grid-cols-5'>
+        <div className='bg-red-500 col-span-2'>hey</div>
+        <div className='bg-green-500 col-span-2'>whats</div>
+        <div className='bg-blue-500'>up</div>
+      </div>
     </div>
   )
 }

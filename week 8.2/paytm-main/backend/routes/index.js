@@ -1,17 +1,9 @@
 import express from express
-const app = express();
-const PORT = 3000;
+import userRouter from 'user'
 
-const router = express.router();
+const apiRouter = express.Router();
 
-const apiRouter = router.get('/api/v1', (req, res)=>{
-    res.send("Hello");
-})
-
-app.listen(PORT, (err)=>{
-    if(err) console.log("error");
-    console.log("Server listening on PORT", PORT)
-})
+apiRouter.use('/user', userRouter);
 
 module.exports = apiRouter;
 

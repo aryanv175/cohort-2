@@ -1,9 +1,9 @@
 import express from express
 import userRouter from 'user'
 
-const apiRouter = express.Router();
+const router = express.Router();
 
-apiRouter.use('/user', userRouter);
+router.use('/user', userRouter);
 
-module.exports = apiRouter;
+module.exports = router;
 

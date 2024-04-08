@@ -1,5 +1,5 @@
 import express from express;
 
-const userRouter = express.Router();
+const router = express.Router();
 
-module.exports = userRouter;
+module.exports = router;

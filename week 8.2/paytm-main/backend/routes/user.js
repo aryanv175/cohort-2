@@ -7,7 +7,7 @@ const z = require("zod");
 const router = express.Router();
 
 const signUpSchema = z.object({
-    username: z.string(),
+    username: z.string().email(),
     firstName: z.string(),
     lastName: z.string(),
 	password: z.string()
@@ -55,6 +55,45 @@ router.post('/signup', async (req, res)=>{
     })
 
 })  
+
+const signinSchema = z.object({
+    username: z.string().email(),
+    password: z.string()
+})
+
+router.post('/signin', async (req, res) => {
+    const { success } = signinSchema.safeParse(req.body);
+
+    if (!success){
+        return res.status(411).json({
+            message: "Error while logging in"
+        })
+    }
+
+    const username = req.body.username;
+    const password = req.body.password;
+    
+    const existingUser = await User.findOne({
+        username,
+        password
+    });
+
+    if(!existingUser) {
+        return res.status(411).json({
+            message: "Error while logging in"
+        })
+    }
+
+    const userId = existingUser._id;
+
+    const token = jwt.sign({
+        userId
+    }, JWT_SECRET)
+
+    res.status(200).json({
+        token: token
+    })
+})
 
 
 module.exports = router;

@@ -42,7 +42,7 @@ router.post('/signup', async (req, res)=>{
         firstName,
         lastName
     })
-
+// sorry
     const userId = user._id;
 
     const token = jwt.sign({

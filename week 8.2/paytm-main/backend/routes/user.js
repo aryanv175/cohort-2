@@ -1,5 +1,5 @@
-import express from express;
-import { User } from '../db';
+const express = require("express");
+const { User } = require('../db');
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const z = require("zod");

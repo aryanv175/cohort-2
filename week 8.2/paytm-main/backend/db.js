@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 mongoose.connect("mongodb+srv://aryanverma:S8J0LAsOZ9hPsXZ0@cluster0.eitqolz.mongodb.net/paytm-app");
 
-export const User = mongoose.model('Users',{
+const User = mongoose.model('Users',{
     username: {
         type: String,
         required: true,
@@ -31,3 +31,4 @@ export const User = mongoose.model('Users',{
     }
 });
 
+module.exports = User;

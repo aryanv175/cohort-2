@@ -1,5 +1,8 @@
 import {BrowserRouter, Router, Route} from 'react-router-dom';
-
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
+import Dashboard from "./components/Dashboard";
+import SendMoney from "./components/Send";
 
 
 function App() {
@@ -15,5 +18,7 @@ function App() {
     </BrowserRouter>
   )
 }
+
+
 
 export default App

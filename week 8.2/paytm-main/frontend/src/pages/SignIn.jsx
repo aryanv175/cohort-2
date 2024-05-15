@@ -7,6 +7,7 @@ import { BottomWarning } from "../components/BottomWarning";
 export const SignIn = () => {
     return <div>
         <Heading label={"Sign In"}/>
-        <SubHeading/>
+        <SubHeading label={"Enter your credentials to access your account"} />
+        <InputBox placeholder="harkirat@gmail.com" label={"Email"}/>
     </div>
 }

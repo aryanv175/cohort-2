@@ -8,6 +8,10 @@ export const SignIn = () => {
     return <div>
         <Heading label={"Sign In"}/>
         <SubHeading label={"Enter your credentials to access your account"} />
-        <InputBox placeholder="harkirat@gmail.com" label={"Email"}/>
+        <InputBox placeholder="Enter your email" label={"Email"}/>
+        <InputBox placeholder="Enter your password" label={"Password"}/>
+        <div className="pt-4">
+          <Button label={"Sign in"} />
+        </div>
     </div>
 }
